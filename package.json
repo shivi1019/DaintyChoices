@@ -1,0 +1,23 @@
+{
+  "name": "greensocks",
+  "version": "1.0.0",
+  "description": "Install node by downloading the appropriate version `` https://nodejs.org/en/download/`` then install serverless ``npm install -g serverless``.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/lalitkumarj/GreenSocks.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/lalitkumarj/GreenSocks/issues"
+  },
+  "homepage": "https://github.com/lalitkumarj/GreenSocks#readme",
+  "dependencies": {
+    "serverless": "^2.63.0",
+    "serverless-finch": "^2.6.0"
+  }
+}

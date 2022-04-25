@@ -1,0 +1,62 @@
+org: messishivi
+app: greensocks
+service: greensocks
+frameworkVersion: '2'
+
+plugins:
+  - serverless-finch
+
+
+provider:
+  name: aws
+  runtime: python3.8
+  lambdaHashingVersion: 20201221
+  stage: dev
+  region: us-west-2
+  iamRoleStatements:
+    - Effect: "Allow"
+      Action:
+        - "s3:ListBucket"
+      Resource: "arn:aws:s3:::greensocksapp"
+    - Effect: "Allow"
+      Action:
+        - "s3:PutObject"
+        - "s3:GetObject"
+        - "s3:PutObjectAcl"
+      Resource: "arn:aws:s3:::greensocksapp/*"
+
+functions:
+  loadData:
+    handler: handler.loadData
+    events:
+      - http:
+          path: /loadData
+          method: get
+          request:
+            parameters:
+              querystrings:
+                exp_id: true
+          cors: true
+  
+  saveData:
+    handler: handler.saveData
+    events:
+      - http:
+          path: /saveData
+          method: post
+          cors: true
+
+  # Events:
+  # getquerystring:
+  # Type: Api
+  # Properties:
+  #   Path: /getquerystring
+  #   Method: get
+  #   RequestParameters:
+  #     - method.request.querystring.exp_id:
+  #         Required: true
+  #         Caching: true
+
+custom:
+  client:
+    bucketName: greensocksapp
